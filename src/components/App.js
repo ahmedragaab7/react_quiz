@@ -86,10 +86,25 @@ export default function App() {
   );
 
   useEffect(function () {
-    fetch("http://localhost:8000/questions")
-      .then((res) => res.json())
-      .then((data) => dispatch({ type: "dataReceived", payload: data }))
-      .catch((err) => dispatch({ type: "dataFailed" }));
+    const apiUrl =
+      "https://royalcare-pharma.online/api/questions/123654478965635325/ragab0";
+
+    fetch(apiUrl)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        // Since the data is expected to be an object with a 'questions' key,
+        // we directly pass data.questions to the dispatcher
+        dispatch({ type: "dataReceived", payload: data.questions });
+      })
+      .catch((err) => {
+        console.error("Failed to fetch questions:", err.message);
+        dispatch({ type: "dataFailed" });
+      });
   }, []);
 
   return (
