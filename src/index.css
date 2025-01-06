@@ -45,7 +45,7 @@ body {
   margin-bottom: 4rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .error {
@@ -141,7 +141,8 @@ progress {
 }
 
 .btn-ui {
-  float: right;
+  display: flex;
+  margin: 0px auto;
 }
 
 .options {
